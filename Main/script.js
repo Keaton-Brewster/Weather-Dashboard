@@ -88,8 +88,6 @@ $(document).ready(function () {
     }
 
 
-
-
     // set up initial time
     $("#time").text(dayjs().format('dddd, MMMM D, h:mm a'))
     // then update every 10 seconds
