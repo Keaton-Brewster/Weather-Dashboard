@@ -1,0 +1,35 @@
+html * {
+    font-family: 'Montserrat', sans-serif;
+}
+
+header span {
+    font-weight: 200;
+}
+
+main {
+    padding: 25px 50px;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.good-uvi {
+    background-color: #5cb85c;
+    padding: 3px 8px;
+    border-radius: 5px;
+}
+
+.okay-uvi {
+    background-color: #f0ad4e;
+    padding: 3px 8px;
+    border-radius: 5px;
+}
+
+.bad-uvi {
+    background-color: #d9534f;
+    padding: 3px 8px;
+    border-radius: 5px;
+}
+
+#current-card {
+    border-radius: 20px !important;
+}
