@@ -2,6 +2,10 @@ html * {
     font-family: 'Montserrat', sans-serif;
 }
 
+p {
+    margin-bottom: 2px !important;
+}
+
 header {
     background-color: hsla(0, 0%, 100%, .85);
 }
@@ -36,11 +40,9 @@ main {
 
 .high {
     margin-bottom: 0;
-    margin-left: 4.1rem;
 }
 .low {
     margin-top: 0;
-    margin-left: 4.3rem;
 }
 
 #forecast-div {
@@ -52,6 +54,10 @@ main {
     margin-left: 1.35rem;
 }
 
+#daily-temp {
+    padding: 0;
+    background-color: hsla(0, 2%, 83%, 0.774);
+}
 
 li:hover {
     cursor: pointer;
@@ -59,6 +65,10 @@ li:hover {
 
 .card-body {
     padding: 5px 2px !important;
+}
+
+.card {
+    padding: 0px !important;
 }
 
 #current-card {
