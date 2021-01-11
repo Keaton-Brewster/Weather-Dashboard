@@ -18,6 +18,7 @@ main {
     padding: 25px 50px;
     margin: auto;
     box-sizing: border-box;
+    max-width: 1446px;
 }
 
 .good-uvi {
@@ -38,20 +39,10 @@ main {
     border-radius: 5px;
 }
 
-.high {
-    margin-bottom: 0;
-}
-.low {
-    margin-top: 0;
-}
-
-#forecast-div {
-    margin-top: 15px;
-}
-
 #forecast-day {
+    margin-top: 1em;
     border-radius: 15px;
-    margin-left: 1.35rem;
+    margin-left: 1.75rem;
 }
 
 #daily-temp {
@@ -71,7 +62,11 @@ li:hover {
     padding: 0px !important;
 }
 
-#current-card {
+.card-like {
+    background-color: #ffffff;
+}
+
+#todayANDcurrent {
     border-radius: 15px;
-    padding: 1.25rem !important;
+    padding: 1.25em !important;
 }

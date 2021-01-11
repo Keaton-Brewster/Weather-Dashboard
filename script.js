@@ -14,6 +14,7 @@ $(document).ready(function () {
             method: "GET",
             datatype: 'json',
             success: function (object) {
+                console.log(object);
                 if (history.indexOf(searchValue) === -1) {
                     history.push(object.name);
                     localStorage.setItem('history', JSON.stringify(history));
@@ -22,42 +23,77 @@ $(document).ready(function () {
 
                 $("#current-div").empty();
 
-                var card = $("<div>").attr({ "class": "card", "id": "current-card" }),
-                    cardBody = $("<div>").attr({'class':'card-body', 'id':'current-body'}),
+                var toady_current = $("<div>").attr({ "class": "card-like", 'id': 'todayANDcurrent' }),
+
+
                     title = $("<h3>").addClass('card-title').text(object.name + ' '),
                     time = $("<p>").addClass('float-right').text(dayjs().format('M-DD-YYYY')),
                     icon = $("<img>").attr('src', 'http://openweathermap.org/img/wn/' + object.weather[0].icon + ".png"),
+
                     divider = $("<div>").addClass('dropdown-divider'),
-                    conditions = $("<p>").addClass('card-text').text('Current Conditions: ' + object.weather[0].description),
-                    temp = $("<p>").addClass('card-text').text('Current Temperature: ' + object.main.temp + '°f'),
-                    todayCard = $("<div>").attr({'class':'card col-3'}),
-                    todayCardBody = $("<div>").attr({'class':'card-body text-center', 'id':'daily-temp'}),
-                    today = $("<p>").attr({'class': 'card-header'}).text('Today'),
-                    humidity = $("<p>").addClass('card-text').text('Humidity: ' + object.main.humidity + '%'),
-                    windSpeed = $("<p>").addClass('card-text').text('Wind speed: ' + object.wind.speed + 'mph');
+
+                    row = $("<div>").attr({ 'id': 'today-row', 'class': 'row justify-content-around' }),
+
+                    currWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'current-weather' }),
+                    currTitle = $('<p>').attr({ 'class': 'card-header font-weight-bold' }).text('Current'),
+                    currConditions = $("<p>").addClass('card-text').text('Current Conditions: ' + object.weather[0].main),
+                    currTemp = $("<p>").addClass('card-text').text('Current Temperature: ' + object.main.temp + '°f'),
+                    feelsLike = $('<p>').addClass('card-text').text('Feels like: ' + object.main.feels_like + '°f'),
+                    currHumidity = $("<p>").addClass('card-text').text('Humidity: ' + object.main.humidity + '%'),
+                    currWndSpd = $("<p>").addClass('card-text').text('Wind speed: ' + object.wind.speed + 'mph'),
+
+                    todaysWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'todays-weather' }),
+                    todaysTitle = $("<p>").attr({ 'class': 'card-header font-weight-bold' }).text('Today');
 
                 title.append(icon, time);
-                cardBody.append(title, divider, conditions, temp, todayCard.append(todayCardBody.append(today)), humidity, windSpeed);
-                card.append(cardBody);
-                $("#current-div").append(card);
+                currWeather.append(currTitle, currConditions, currTemp, feelsLike, currHumidity, currWndSpd);
+                todaysWeather.append(todaysTitle);
+                row.append(currWeather, todaysWeather);
+                toady_current.append(title, row);
+                $("#current-div").append(toady_current);
 
                 getForecast(searchValue);
 
                 // take lat and lon from the object, and send it to get the UV index (which requires a separate api call for some reason)
                 let lon = object.coord.lon,
                     lat = object.coord.lat;
-                getUVIndex(lat, lon);
 
-                // get high/low for the current day
+                // get high/low for the current day and UVI's
                 $.ajax({
                     method: 'GET',
                     url: "https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + myAPIkey,
                     dataType: "json",
                     success: function (object) {
-                        var high = $("<p>").addClass('card-text high').text('High: ' + object.daily[0].temp.max + '°f'),
-                            low = $("<p>").addClass('card-text low').text('Low: ' + object.daily[0].temp.min + '°f');
+                        console.log(object);
+                        var high = $("<p>").addClass('card-text').text('High: ' + object.daily[0].temp.max + '°f'),
+                            low = $("<p>").addClass('card-text').text('Low: ' + object.daily[0].temp.min + '°f'),
+                            conditions = $('<p>').attr({ 'class': 'card-text' }).text('Conditions: ' + object.daily[0].weather[0].main),
+                            pop = $('<p>').addClass('card-text').text('Chance of precipitation: ' + object.daily[0].pop + '%'),
 
-                        $("#daily-temp").append(high, low);
+                            uvindex = object.current.uvi,
+                            currUVele = $("<p>").attr('class', 'card-text').text('UV Index: '),
+                            currUVp = $("<span>").text(uvindex),
+
+                            todayIndex = object.daily[0].uvi,
+                            todayUVele = $("<p>").addClass('card-text').text('UV Index: '),
+                            todayUVp = $('<span>').text(todayIndex);
+
+
+                        function checkUVI(index, element) {
+                            if (index < 3) { element.addClass('good-uvi') }
+                            else if (index < 6) { element.addClass('okay-uvi') }
+                            else { element.addClass('bad-uvi') };
+                        }
+
+                        checkUVI(uvindex, currUVp);
+                        checkUVI(todayIndex, todayUVp);
+
+                        currUVele.append(currUVp);
+                        todayUVele.append(todayUVp);
+
+                        $("#current-div #current-weather").append(currUVele);
+
+                        $("#todays-weather").append(high, low, conditions, pop, todayUVele);
                     },
                     error: function (error) {
                         console.log(error);
@@ -95,35 +131,10 @@ $(document).ready(function () {
                         $("#forecast-div").append(card);
                     }
                 }
-
             },
             error: function (error) {
                 console.log(error);
             }
-        });
-    }
-
-    function getUVIndex(lat, lon) {
-        // get uv index function
-        $.ajax({
-            type: "GET",
-            url: "https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + myAPIkey,
-            dataType: "json",
-            success: function (object) {
-                var uvindex = object.daily[0].uvi,
-                    uvEle = $("<p>").attr('class', 'card-text').text('UV Index: '),
-                    uvP = $("<span>").text(uvindex);
-                if (uvindex < 3) { uvP.addClass('good-uvi') }
-                else if (uvindex < 6) { uvP.addClass('okay-uvi') }
-                else { uvP.addClass('bad-uvi') };
-
-                uvEle.append(uvP);
-                $("#current-div #current-body").append(uvEle);
-
-            },
-            error: function (error) {
-                console.log(error);
-            },
         });
     }
 
