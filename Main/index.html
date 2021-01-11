@@ -24,11 +24,11 @@
         rel="stylesheet">
     <!-- personal CSS -->
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Weather Dashboard</title>
 </head>
 
 <body>
-    <header class="navbar sticky-top bg-light">
+    <header class="p-3 sticky-top bg-light text-center">
         <h1>Weather Dashboard</h1>
         <span id="time" class="navbar-text"></span>
     </header>
@@ -36,23 +36,22 @@
     <main class="row bg-dark">
 
         <aside class="card col-3 p-0" id="search-and-history">
-            <div class="card-header input-group" aria-describedby="search-button">
+            <form class="card-header input-group" aria-describedby>
                 <input type="text" class="form-control" id="search-value" placeholder="search by city">
-                <div>
                     <button class="btn btn-outline-primary" type="button" id="search-button"><i
                             class="fa fa-search"></i></button>
-                </div>
-            </div>
-            <div id="history text-center">
-                <!-- <p class="">Previously Searched:</p> -->
+            </form>
+            <div id="history" class="text-center">
+                <p class="pt-3 font-weight-bolder">Previously Searched:</p>
                 <div class="dropdown-divider"></div>
+                <div id="previous"></div>
             </div>
         </aside>
 
 
         <div class="col-9" id="current-and-forecast">
             <div class="bg-dark" id="current-div"></div>
-            <div class="bg-dark" id="forecast-div"></div>
+            <div class="bg-dark row" id="forecast-div"></div>
         </div>
 
     </main>
