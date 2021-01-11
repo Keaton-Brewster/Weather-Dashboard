@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     function search(searchValue) {
         $.ajax({
-            url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&units=imperial&appid=" + myAPIkey,
+            url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&units=imperial&appid=" + myAPIkey,
             method: "GET",
             datatype: 'json',
             success: function (object) {
@@ -71,7 +71,7 @@ $(document).ready(function () {
     function getForecast(searchValue) {
         $.ajax({
             method: 'GET',
-            url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + searchValue + '&units=imperial&appid=' + myAPIkey,
+            url: 'https://api.openweathermap.org/data/2.5/forecast?q=' + searchValue + '&units=imperial&appid=' + myAPIkey,
             dataType: "json",
             success: function (object) {
                 $("#forecast-div").empty();
