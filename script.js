@@ -23,19 +23,21 @@ $(document).ready(function () {
                 $("#current-div").empty();
 
                 var card = $("<div>").attr({ "class": "card", "id": "current-card" }),
-                    cardBody = $("<div>").addClass('card-body'),
+                    cardBody = $("<div>").attr({'class':'card-body', 'id':'current-body'}),
                     title = $("<h3>").addClass('card-title').text(object.name + ' '),
                     time = $("<p>").addClass('float-right').text(dayjs().format('M-DD-YYYY')),
                     icon = $("<img>").attr('src', 'http://openweathermap.org/img/wn/' + object.weather[0].icon + ".png"),
                     divider = $("<div>").addClass('dropdown-divider'),
                     conditions = $("<p>").addClass('card-text').text('Current Conditions: ' + object.weather[0].description),
                     temp = $("<p>").addClass('card-text').text('Current Temperature: ' + object.main.temp + '°f'),
-                    today = $("<p>").attr({'class': 'card-text', 'id':'daily-temp'}).text('Today'),
+                    todayCard = $("<div>").attr({'class':'card col-3'}),
+                    todayCardBody = $("<div>").attr({'class':'card-body text-center', 'id':'daily-temp'}),
+                    today = $("<p>").attr({'class': 'card-header'}).text('Today'),
                     humidity = $("<p>").addClass('card-text').text('Humidity: ' + object.main.humidity + '%'),
                     windSpeed = $("<p>").addClass('card-text').text('Wind speed: ' + object.wind.speed + 'mph');
 
                 title.append(icon, time);
-                cardBody.append(title, divider, conditions, temp, today, humidity, windSpeed);
+                cardBody.append(title, divider, conditions, temp, todayCard.append(todayCardBody.append(today)), humidity, windSpeed);
                 card.append(cardBody);
                 $("#current-div").append(card);
 
@@ -116,7 +118,7 @@ $(document).ready(function () {
                 else { uvP.addClass('bad-uvi') };
 
                 uvEle.append(uvP);
-                $("#current-div .card-body").append(uvEle);
+                $("#current-div #current-body").append(uvEle);
 
             },
             error: function (error) {
