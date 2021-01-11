@@ -28,13 +28,14 @@ $(document).ready(function () {
                     time = $("<p>").addClass('float-right').text(dayjs().format('M-DD-YYYY')),
                     icon = $("<img>").attr('src', 'http://openweathermap.org/img/wn/' + object.weather[0].icon + ".png"),
                     divider = $("<div>").addClass('dropdown-divider'),
-                    conditions = $("<p>").addClass('card-text').text('Current conditions: ' + object.weather[0].description),
-                    temp = $("<p>").attr({ 'class': 'card-text', 'id': 'current-temp' }).text('Temperature: ' + object.main.temp + '°f'),
+                    conditions = $("<p>").addClass('card-text').text('Current Conditions: ' + object.weather[0].description),
+                    temp = $("<p>").addClass('card-text').text('Current Temperature: ' + object.main.temp + '°f'),
+                    today = $("<p>").attr({'class': 'card-text', 'id':'daily-temp'}).text('Today'),
                     humidity = $("<p>").addClass('card-text').text('Humidity: ' + object.main.humidity + '%'),
                     windSpeed = $("<p>").addClass('card-text').text('Wind speed: ' + object.wind.speed + 'mph');
 
                 title.append(icon, time);
-                cardBody.append(title, divider, conditions, temp, humidity, windSpeed);
+                cardBody.append(title, divider, conditions, temp, today, humidity, windSpeed);
                 card.append(cardBody);
                 $("#current-div").append(card);
 
@@ -54,7 +55,7 @@ $(document).ready(function () {
                         var high = $("<p>").addClass('card-text high').text('High: ' + object.daily[0].temp.max + '°f'),
                             low = $("<p>").addClass('card-text low').text('Low: ' + object.daily[0].temp.min + '°f');
 
-                        $("#current-temp").append(high, low);
+                        $("#daily-temp").append(high, low);
                     },
                     error: function (error) {
                         console.log(error);
