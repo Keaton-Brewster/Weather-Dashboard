@@ -14,8 +14,6 @@ $(document).ready(function () {
             method: "GET",
             datatype: 'json',
             success: function (object) {
-                console.log(object);
-
                 if (history.indexOf(searchValue) === -1) {
                     history.push(object.name);
                     localStorage.setItem('history', JSON.stringify(history));
@@ -58,15 +56,13 @@ $(document).ready(function () {
             url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + searchValue + '&units=imperial&appid=' + myAPIkey,
             dataType: "json",
             success: function (object) {
-                console.log(object);
-                
                 $("#forecast-div").empty();
                 for (let i = 0; i < object.list.length; i++) {
                     var hour = object.list[i];
                     if (hour.dt_txt.indexOf("15:00:00") !== -1) {
                         var card = $("<div>").attr({'class':'card col-2','id':'forecast-day'}),
                             cardBody = $("<div>").addClass('card-body');
-                            title = $("<p>").addClass('card-title').text(dayjs(hour.dt).format('MM-DD')),
+                            title = $("<p>").addClass('card-title').text(dayjs(hour.dt_txt).format('MM-DD')),
                             conditions = $("<p>").addClass('card-text').text('conditions: ' + hour.weather[0].description),
                             icon = $("<img>").attr('src', 'http://openweathermap.org/img/wn/' + hour.weather[0].icon + ".png"),
                             temp = $("<p>").addClass('card-text').text('Temp: ' + hour.main.temp + '°f'),
