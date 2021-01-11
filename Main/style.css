@@ -30,6 +30,25 @@ main {
     border-radius: 5px;
 }
 
+#forecast-div {
+    margin-top: 15px;
+}
+
+#forecast-day {
+    border-radius: 20px;
+    margin-left: 26px;
+}
+
+
+li:hover {
+    cursor: pointer;
+}
+
+.card-body {
+    padding: 5px 2px !important;
+}
+
 #current-card {
     border-radius: 20px !important;
+    padding: 1.25rem !important;
 }
