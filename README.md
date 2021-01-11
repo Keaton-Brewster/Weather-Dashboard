@@ -1,8 +1,6 @@
 # Weather-Dashboard
 Simple weather dashboard - Search for a city, and check the weather conditions and forecast
 
-
-
 ## User Story
 
 ```
@@ -28,3 +26,5 @@ THEN I am again presented with current and future conditions for that city
 WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast
 ```
+
+View deployed version: https://keaton-brewster.github.io/Weather-Dashboard/
