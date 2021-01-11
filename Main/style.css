@@ -2,6 +2,10 @@ html * {
     font-family: 'Montserrat', sans-serif;
 }
 
+header {
+    background-color: hsla(0, 0%, 100%, .85);
+}
+
 header span {
     font-weight: 200;
 }
@@ -30,13 +34,22 @@ main {
     border-radius: 5px;
 }
 
+.high {
+    margin-bottom: 0;
+    margin-left: 4.1rem;
+}
+.low {
+    margin-top: 0;
+    margin-left: 4.3rem;
+}
+
 #forecast-div {
     margin-top: 15px;
 }
 
 #forecast-day {
-    border-radius: 20px;
-    margin-left: 26px;
+    border-radius: 15px;
+    margin-left: 1.35rem;
 }
 
 
@@ -49,6 +62,6 @@ li:hover {
 }
 
 #current-card {
-    border-radius: 20px !important;
+    border-radius: 15px;
     padding: 1.25rem !important;
 }
