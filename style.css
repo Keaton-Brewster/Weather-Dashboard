@@ -1,13 +1,15 @@
 :root {
-    --green-blue: #B5D8D6;
-    --light-greenblue: #cde6e4;
-    --cream:  #fbf9f4;
-    --lightergreen:  #f7f9f6;
-    --pink: #F6E7E0;
+    --primary: #8AA1B1;
+    --primary_light: #d1dae0;
+    --input_primary: #e0e7eb;
+    --secondary: #FAB89E;
+    --dark: #7e7d8c;
+    --darker: #534D56;
+    --light: #fef8f5;
+    --highlight: #FF5F5C;
 }
 html * {
     font-family: 'Raleway', sans-serif;
-    color: hsl(144, 20%, 26%);
 }
 
 p {
@@ -15,7 +17,8 @@ p {
 }
 
 header {
-    background-color: var(--green-blue);
+    background-color: var(--dark);
+    box-shadow: 0px -2px 10px black;
 }
 
 header span {
@@ -29,8 +32,12 @@ main {
     max-width: 1446px;
 }
 
+aside.card {
+    margin-top: 0;
+}
+
 input#search-value {
-    background-color: var(--light-greenblue);
+    background-color: var(--input_primary);
     border-radius: 25px;
 }
 
@@ -56,7 +63,7 @@ input#search-value {
     margin-left: 1.75rem;
 }
 #forecast-header {
-    background-color: var(--pink);
+    background-color: var(--primary);
 }
 
 #daily-temp {
@@ -64,14 +71,16 @@ input#search-value {
     background-color: hsla(0, 2%, 83%, 0.774);
 }
 
-li:hover {
-    cursor: pointer;
-}
-
 .card {
     padding: 0px !important;
     margin-top: 1rem;
-    background-color: var(--cream);
+    margin-bottom: 1rem;
+    background-color: var(--light);
+    box-shadow: 0px 0px 20px -10px black;
+}
+
+.card-title {
+    margin: .75rem;
 }
 
 .card-body {
@@ -83,23 +92,35 @@ li:hover {
 }
 
 .card li{
-    background-color: var(--cream);
+    background-color: var(--light);
+}
+.card li:hover {
+    cursor: pointer;
+    background-color: var(--highlight);
 }
 
 #current-header.card-header {
-    background-color: var(--green-blue);
+    background-color: var(--primary);
+}
+
+#todays-weather, #current-weather {
+    border-radius: 15px !important;
 }
 
 form.card-header {
-    background-color: var(--green-blue);
+    background-color: var(--primary_light);
 }
 
 .card-like {
-    background-color: var(--lightergreen);
+    background-color: var(--primary_light);
 }
 
-#todayANDcurrent {
+#rightnowtoday {
     border-radius: 5px;
     padding-bottom: 1.25em;
     margin-bottom: 1rem;
+}
+
+.bg-dark {
+    background-color: var(--darker) !important;
 }

@@ -23,7 +23,7 @@ $(document).ready(function () {
 
                 $("#current-div").empty();
 
-                var toady_current = $("<div>").attr({ "class": "card-like", 'id': 'todayANDcurrent' }),
+                var toady_current = $("<div>").attr({ "class": "card-like", 'id': 'rightnowtoday' }),
 
 
                     title = $("<h3>").attr({'class':'card-header','id':'current-header'}).text(object.name + ' '),
@@ -35,8 +35,8 @@ $(document).ready(function () {
 
                     row = $("<div>").attr({ 'id': 'today-row', 'class': 'row justify-content-around' }),
 
-                    currWeather = $("<div>").addClass('card col-5 text-center'),
-                    currWeatherBody = $('<div>').attr({'class':'card-body','id':'current-weather'}),
+                    currWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'current-weather' }),
+                    currWeatherBody = $('<div>').attr({'class':'card-body','id':'current-weather-body'}),
                     currTitle = $('<p>').attr({ 'class': 'card-title font-weight-bold' }).text('Current'),
                     currConditions = $("<p>").addClass('card-text').text('Current Conditions: ' + object.weather[0].main),
                     currTemp = $("<p>").addClass('card-text').text('Current Temperature: ' + object.main.temp + '°f'),
@@ -94,7 +94,7 @@ $(document).ready(function () {
                         currUVele.append(currUVp);
                         todayUVele.append(todayUVp);
 
-                        $("#current-div #current-weather").append(currUVele);
+                        $("#current-div #current-weather-body").append(currUVele);
 
                         $("#todays-weather").append(high, low, conditions, pop, todayUVele);
                     },
@@ -150,7 +150,7 @@ $(document).ready(function () {
     }
 
     // set up handler for when you click list item 
-    $("#history li").on("click", function () {
+    $("#history").on('click', 'li', function () {
         search($(this).text());
     });
 
