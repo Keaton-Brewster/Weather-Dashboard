@@ -1,5 +1,13 @@
+:root {
+    --green-blue: #B5D8D6;
+    --light-greenblue: #cde6e4;
+    --cream:  #fbf9f4;
+    --lightergreen:  #f7f9f6;
+    --pink: #F6E7E0;
+}
 html * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    color: hsl(144, 20%, 26%);
 }
 
 p {
@@ -7,7 +15,7 @@ p {
 }
 
 header {
-    background-color: hsla(0, 0%, 100%, .85);
+    background-color: var(--green-blue);
 }
 
 header span {
@@ -19,6 +27,11 @@ main {
     margin: auto;
     box-sizing: border-box;
     max-width: 1446px;
+}
+
+input#search-value {
+    background-color: var(--light-greenblue);
+    border-radius: 25px;
 }
 
 .good-uvi {
@@ -40,9 +53,10 @@ main {
 }
 
 #forecast-day {
-    margin-top: 1em;
-    border-radius: 15px;
     margin-left: 1.75rem;
+}
+#forecast-header {
+    background-color: var(--pink);
 }
 
 #daily-temp {
@@ -54,19 +68,38 @@ li:hover {
     cursor: pointer;
 }
 
-.card-body {
-    padding: 5px 2px !important;
-}
-
 .card {
     padding: 0px !important;
+    margin-top: 1rem;
+    background-color: var(--cream);
+}
+
+.card-body {
+    padding-top: .5rem;
+}
+
+.btn {
+    border-radius: 3px;
+}
+
+.card li{
+    background-color: var(--cream);
+}
+
+#current-header.card-header {
+    background-color: var(--green-blue);
+}
+
+form.card-header {
+    background-color: var(--green-blue);
 }
 
 .card-like {
-    background-color: #ffffff;
+    background-color: var(--lightergreen);
 }
 
 #todayANDcurrent {
-    border-radius: 15px;
-    padding: 1.25em !important;
+    border-radius: 5px;
+    padding-bottom: 1.25em;
+    margin-bottom: 1rem;
 }

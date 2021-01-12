@@ -26,16 +26,18 @@ $(document).ready(function () {
                 var toady_current = $("<div>").attr({ "class": "card-like", 'id': 'todayANDcurrent' }),
 
 
-                    title = $("<h3>").addClass('card-title').text(object.name + ' '),
+                    title = $("<h3>").attr({'class':'card-header','id':'current-header'}).text(object.name + ' '),
                     time = $("<p>").addClass('float-right').text(dayjs().format('M-DD-YYYY')),
                     icon = $("<img>").attr('src', 'http://openweathermap.org/img/wn/' + object.weather[0].icon + ".png"),
 
-                    divider = $("<div>").addClass('dropdown-divider'),
+                    divider = $('<div>').addClass('dropdown-divider'),
+                    divider2 = $('<div>').addClass('dropdown-divider'),
 
                     row = $("<div>").attr({ 'id': 'today-row', 'class': 'row justify-content-around' }),
 
-                    currWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'current-weather' }),
-                    currTitle = $('<p>').attr({ 'class': 'card-header font-weight-bold' }).text('Current'),
+                    currWeather = $("<div>").addClass('card col-5 text-center'),
+                    currWeatherBody = $('<div>').attr({'class':'card-body','id':'current-weather'}),
+                    currTitle = $('<p>').attr({ 'class': 'card-title font-weight-bold' }).text('Current'),
                     currConditions = $("<p>").addClass('card-text').text('Current Conditions: ' + object.weather[0].main),
                     currTemp = $("<p>").addClass('card-text').text('Current Temperature: ' + object.main.temp + '°f'),
                     feelsLike = $('<p>').addClass('card-text').text('Feels like: ' + object.main.feels_like + '°f'),
@@ -43,11 +45,12 @@ $(document).ready(function () {
                     currWndSpd = $("<p>").addClass('card-text').text('Wind speed: ' + object.wind.speed + 'mph'),
 
                     todaysWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'todays-weather' }),
-                    todaysTitle = $("<p>").attr({ 'class': 'card-header font-weight-bold' }).text('Today');
+                    todaysTitle = $("<p>").attr({ 'class': 'card-title font-weight-bold' }).text('Today');
 
                 title.append(icon, time);
-                currWeather.append(currTitle, currConditions, currTemp, feelsLike, currHumidity, currWndSpd);
-                todaysWeather.append(todaysTitle);
+                currWeatherBody.append(currConditions, currTemp, feelsLike, currHumidity, currWndSpd);
+                currWeather.append(currTitle, divider, currWeatherBody);
+                todaysWeather.append(todaysTitle, divider2);
                 row.append(currWeather, todaysWeather);
                 toady_current.append(title, row);
                 $("#current-div").append(toady_current);
@@ -118,7 +121,7 @@ $(document).ready(function () {
                     if (hour.dt_txt.indexOf("15:00:00") !== -1) {
                         var card = $("<div>").attr({ 'class': 'card col-2', 'id': 'forecast-day' }),
                             cardBody = $("<div>").addClass('card-body'),
-                            title = $("<p>").addClass('card-title').text(dayjs(hour.dt_txt).format('M-DD')),
+                            title = $("<p>").attr({'class':'card-header text-center','id':'forecast-header'}).text(dayjs(hour.dt_txt).format('M-DD')),
                             icon = $("<img>").attr('src', 'http://openweathermap.org/img/wn/' + hour.weather[0].icon + ".png"),
                             divider = $("<div>").addClass('dropdown-divider'),
                             conditions = $("<p>").addClass('card-text').text('Conditions: ' + hour.weather[0].main),
@@ -126,8 +129,8 @@ $(document).ready(function () {
                             humidity = $("<p>").addClass('card-text').text('Humidity: ' + hour.main.humidity + '%');
 
                         title.append(icon);
-                        cardBody.append(title, divider, conditions, temp, humidity);
-                        card.append(cardBody);
+                        cardBody.append(conditions, temp, humidity);
+                        card.append(title, cardBody);
                         $("#forecast-div").append(card);
                     }
                 }
@@ -157,6 +160,12 @@ $(document).ready(function () {
         var searchValue = $("#search-value").val();
         $("#search-value").val('')
         search(searchValue);
+    })
+
+    // clear history button
+    $('#clear-history').on('click', function(event){
+        localStorage.clear();
+        location.reload();
     })
 });
 
