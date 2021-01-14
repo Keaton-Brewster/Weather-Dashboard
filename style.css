@@ -6,7 +6,7 @@
     --dark: #7e7d8c;
     --darker: #534D56;
     --light: #fef8f5;
-    --highlight: #FF5F5C;
+    --highlight: #ec6e4c;
 }
 html * {
     font-family: 'Raleway', sans-serif;
@@ -73,7 +73,7 @@ form button {
 }
 
 #forecast-day {
-    margin-left: 1.75rem;
+    margin-left: 1.5em;
 }
 #forecast-header {
     background-color: var(--primary);

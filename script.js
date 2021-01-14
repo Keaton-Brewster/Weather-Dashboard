@@ -9,22 +9,24 @@ $(document).ready(function () {
     }
 
     function search(searchValue) {
+        // this is the call that takes the city you input and gives current weather info, as well as lat and lon values that we can feed into another call to retrieve more information
         $.ajax({
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&units=imperial&appid=" + myAPIkey,
             method: "GET",
             datatype: 'json',
             success: function (object) {
-                console.log(object);
+                // make a list item that you can revisit when you search for something IF that city has not previously been stored locally
                 if (history.indexOf(searchValue) === -1) {
                     history.push(object.name);
                     localStorage.setItem('history', JSON.stringify(history));
                     makeRow(object.name);
                 }
 
+                // empty the previous results before loading new results
                 $("#current-div").empty();
 
+                // then, just creating all the elements that will have the dynamic information for the todays weather
                 var toady_current = $("<div>").attr({ "class": "card-like", 'id': 'rightnowtoday' }),
-
 
                     title = $("<h3>").attr({'class':'card-header font-30','id':'current-header'}).text(object.name + ''),
                     time = $("<p>").addClass('float-right').text(dayjs().format('M-DD-YYYY')),
@@ -49,6 +51,7 @@ $(document).ready(function () {
                     todaysWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'todays-weather' }),
                     todaysTitle = $("<p>").attr({ 'class': 'card-title font-weight-bold font-20' }).text('Today');
 
+                // appending all the dynamic information
                 title.append(icon, time);
                 currWeatherBody.append(currConditions, currTemp_text, feelsLike_text, currHumidity, currWndSpd);
                 currWeather.append(currTitle, divider, currWeatherBody);
@@ -63,13 +66,12 @@ $(document).ready(function () {
                 let lon = object.coord.lon,
                     lat = object.coord.lat;
 
-                // get high/low for the current day and UVI's
+                // get other weather information for the current day as well as UV indexes for current and daily
                 $.ajax({
                     method: 'GET',
                     url: "https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + myAPIkey,
                     dataType: "json",
                     success: function (object) {
-                        console.log(object);
                         var high_data = $("<span>").addClass('font-weight-light').text(object.daily[0].temp.max + '°f'),
                             high = $('<p>').addClass('card-text font-weight-bold').text('High: ').append(high_data),
                             low_data = $('<span>').addClass('font-weight-light').text(object.daily[0].temp.min + '°f'),
@@ -113,12 +115,14 @@ $(document).ready(function () {
         });
     };
 
+    // this function pull the information for the next five days, and dynamically created the elements to display the information
     function getForecast(searchValue) {
         $.ajax({
             method: 'GET',
             url: 'https://api.openweathermap.org/data/2.5/forecast?q=' + searchValue + '&units=imperial&appid=' + myAPIkey,
             dataType: "json",
             success: function (object) {
+                console.log(object)
                 $("#forecast-div").empty();
                 for (let i = 0; i < object.list.length; i++) {
                     var hour = object.list[i];
