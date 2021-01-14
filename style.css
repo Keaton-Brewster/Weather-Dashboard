@@ -40,22 +40,36 @@ input#search-value {
     border-radius: 25px;
 }
 
+form button {
+    background: transparent;
+    border: 1px transparent;
+} form button:focus {
+    outline: none;
+    outline-style: none;
+}
+
 .good-uvi {
     background-color: #5cb85c;
     padding: 3px 8px;
     border-radius: 5px;
+    box-shadow: 0px 0px 20px -10px black;
+
 }
 
 .okay-uvi {
     background-color: #f0ad4e;
     padding: 3px 8px;
     border-radius: 5px;
+    box-shadow: 0px 0px 20px -10px black;
+
 }
 
 .bad-uvi {
     background-color: var(--highlight);
     padding: 3px 8px;
     border-radius: 5px;
+    box-shadow: 0px 0px 20px -10px black;
+
 }
 
 #forecast-day {
@@ -126,4 +140,14 @@ form.card-header {
 }
 .bg-light {
     background-color: var(--light) !important;
+}
+
+.font-20 {
+    font-size: 20pt;
+}
+.font-30 {
+    font-size: 30pt;
+}
+.font-40 {
+    font-size: 40pt;
 }

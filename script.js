@@ -26,7 +26,7 @@ $(document).ready(function () {
                 var toady_current = $("<div>").attr({ "class": "card-like", 'id': 'rightnowtoday' }),
 
 
-                    title = $("<h3>").attr({'class':'card-header','id':'current-header'}).text(object.name + ' '),
+                    title = $("<h3>").attr({'class':'card-header font-30','id':'current-header'}).text(object.name + ''),
                     time = $("<p>").addClass('float-right').text(dayjs().format('M-DD-YYYY')),
                     icon = $("<img>").attr('src', 'http://openweathermap.org/img/wn/' + object.weather[0].icon + ".png"),
 
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
                     currWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'current-weather' }),
                     currWeatherBody = $('<div>').attr({'class':'card-body','id':'current-weather-body'}),
-                    currTitle = $('<p>').attr({ 'class': 'card-title font-weight-bold' }).text('Current'),
+                    currTitle = $('<p>').attr({ 'class': 'card-title font-weight-bold font-20' }).text('Current'),
                     currConditions = $("<p>").addClass('card-text').text('Current Conditions: ' + object.weather[0].main),
                     currTemp_data = $('<span>').addClass('font-weight-light').text(object.main.temp + '°f'),
                     currTemp_text = $("<p>").addClass('card-text font-weight-bold').text('Current Temperature: ').append(currTemp_data),
@@ -47,7 +47,7 @@ $(document).ready(function () {
                     currWndSpd = $("<p>").addClass('card-text').text('Wind speed: ' + object.wind.speed + ' mph'),
 
                     todaysWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'todays-weather' }),
-                    todaysTitle = $("<p>").attr({ 'class': 'card-title font-weight-bold' }).text('Today');
+                    todaysTitle = $("<p>").attr({ 'class': 'card-title font-weight-bold font-20' }).text('Today');
 
                 title.append(icon, time);
                 currWeatherBody.append(currConditions, currTemp_text, feelsLike_text, currHumidity, currWndSpd);
@@ -78,12 +78,12 @@ $(document).ready(function () {
                             pop = $('<p>').addClass('card-text').text('Chance of precipitation: ' + object.daily[0].pop + '%'),
 
                             uvindex = object.current.uvi,
-                            currUVele = $("<p>").attr('class', 'card-text').text('UV Index: '),
-                            currUVp = $("<span>").text(uvindex),
+                            currUVele = $("<p>").attr('class', 'card-text mt-2').text('UV Index: '),
+                            currUVp = $("<span>").addClass('font-weight-bold').text(uvindex),
 
                             todayIndex = object.daily[0].uvi,
-                            todayUVele = $("<p>").addClass('card-text').text('UV Index: '),
-                            todayUVp = $('<span>').text(todayIndex);
+                            todayUVele = $("<p>").addClass('card-text mt-2').text('UV Index: '),
+                            todayUVp = $('<span>').addClass('font-weight-bold').text(todayIndex);
 
                         // function to check the conditions of the UV index
                         function checkUVI(index, element) {
@@ -125,9 +125,8 @@ $(document).ready(function () {
                     if (hour.dt_txt.indexOf("15:00:00") !== -1) {
                         var card = $("<div>").attr({ 'class': 'card col-2', 'id': 'forecast-day' }),
                             cardBody = $("<div>").addClass('card-body'),
-                            title = $("<p>").attr({'class':'card-header text-center','id':'forecast-header'}).text(dayjs(hour.dt_txt).format('M-DD')),
+                            title = $("<p>").attr({'class':'card-header text-center font-weight-bold','id':'forecast-header'}).text(dayjs(hour.dt_txt).format('M-DD')),
                             icon = $("<img>").attr('src', 'http://openweathermap.org/img/wn/' + hour.weather[0].icon + ".png"),
-                            divider = $("<div>").addClass('dropdown-divider'),
                             conditions = $("<p>").addClass('card-text').text('Conditions: ' + hour.weather[0].main),
                             temp = $("<p>").addClass('card-text').text('Temp: ' + hour.main.temp + '°f'),
                             humidity = $("<p>").addClass('card-text').text('Humidity: ' + hour.main.humidity + '%');
