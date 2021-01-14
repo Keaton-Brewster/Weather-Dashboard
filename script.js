@@ -39,16 +39,18 @@ $(document).ready(function () {
                     currWeatherBody = $('<div>').attr({'class':'card-body','id':'current-weather-body'}),
                     currTitle = $('<p>').attr({ 'class': 'card-title font-weight-bold' }).text('Current'),
                     currConditions = $("<p>").addClass('card-text').text('Current Conditions: ' + object.weather[0].main),
-                    currTemp = $("<p>").addClass('card-text').text('Current Temperature: ' + object.main.temp + '°f'),
-                    feelsLike = $('<p>').addClass('card-text').text('Feels like: ' + object.main.feels_like + '°f'),
+                    currTemp_data = $('<span>').addClass('font-weight-light').text(object.main.temp + '°f'),
+                    currTemp_text = $("<p>").addClass('card-text font-weight-bold').text('Current Temperature: ').append(currTemp_data),
+                    feelsLike_data = $('<span>').addClass('font-weight-light').text(object.main.feels_like + '°f'),
+                    feelsLike_text = $('<p>').addClass('card-text font-weight-bold').text('Feels like: ').append(feelsLike_data),
                     currHumidity = $("<p>").addClass('card-text').text('Humidity: ' + object.main.humidity + '%'),
-                    currWndSpd = $("<p>").addClass('card-text').text('Wind speed: ' + object.wind.speed + 'mph'),
+                    currWndSpd = $("<p>").addClass('card-text').text('Wind speed: ' + object.wind.speed + ' mph'),
 
                     todaysWeather = $("<div>").attr({ 'class': 'card col-5 text-center', 'id': 'todays-weather' }),
                     todaysTitle = $("<p>").attr({ 'class': 'card-title font-weight-bold' }).text('Today');
 
                 title.append(icon, time);
-                currWeatherBody.append(currConditions, currTemp, feelsLike, currHumidity, currWndSpd);
+                currWeatherBody.append(currConditions, currTemp_text, feelsLike_text, currHumidity, currWndSpd);
                 currWeather.append(currTitle, divider, currWeatherBody);
                 todaysWeather.append(todaysTitle, divider2);
                 row.append(currWeather, todaysWeather);
@@ -68,8 +70,10 @@ $(document).ready(function () {
                     dataType: "json",
                     success: function (object) {
                         console.log(object);
-                        var high = $("<p>").addClass('card-text').text('High: ' + object.daily[0].temp.max + '°f'),
-                            low = $("<p>").addClass('card-text').text('Low: ' + object.daily[0].temp.min + '°f'),
+                        var high_data = $("<span>").addClass('font-weight-light').text(object.daily[0].temp.max + '°f'),
+                            high = $('<p>').addClass('card-text font-weight-bold').text('High: ').append(high_data),
+                            low_data = $('<span>').addClass('font-weight-light').text(object.daily[0].temp.min + '°f'),
+                            low = $("<p>").addClass('card-text font-weight-bold').text('Low: ').append(low_data),
                             conditions = $('<p>').attr({ 'class': 'card-text' }).text('Conditions: ' + object.daily[0].weather[0].main),
                             pop = $('<p>').addClass('card-text').text('Chance of precipitation: ' + object.daily[0].pop + '%'),
 
@@ -81,7 +85,7 @@ $(document).ready(function () {
                             todayUVele = $("<p>").addClass('card-text').text('UV Index: '),
                             todayUVp = $('<span>').text(todayIndex);
 
-
+                        // function to check the conditions of the UV index
                         function checkUVI(index, element) {
                             if (index < 3) { element.addClass('good-uvi') }
                             else if (index < 6) { element.addClass('okay-uvi') }

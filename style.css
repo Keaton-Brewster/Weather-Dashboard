@@ -17,7 +17,6 @@ p {
 }
 
 header {
-    background-color: var(--dark);
     box-shadow: 0px -2px 10px black;
 }
 
@@ -54,7 +53,7 @@ input#search-value {
 }
 
 .bad-uvi {
-    background-color: #d9534f;
+    background-color: var(--highlight);
     padding: 3px 8px;
     border-radius: 5px;
 }
@@ -77,6 +76,7 @@ input#search-value {
     margin-bottom: 1rem;
     background-color: var(--light);
     box-shadow: 0px 0px 20px -10px black;
+    border: none;
 }
 
 .card-title {
@@ -123,4 +123,7 @@ form.card-header {
 
 .bg-dark {
     background-color: var(--darker) !important;
+}
+.bg-light {
+    background-color: var(--light) !important;
 }
