@@ -27,4 +27,12 @@ WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast
 ```
 
+## Using the application (don't worry, it's easy:)
+
+* Type in the name of the city for which you want to check the weather.    
+* Press enter.   
+* (Optional) To clear all previously saved results, click 'clear history'
+
+That's it! You now have the weather for the exact moment you hit enter, as well as the whole day, along with a 5 day forecast. 
+
 View deployed version: https://keaton-brewster.github.io/Weather-Dashboard/
