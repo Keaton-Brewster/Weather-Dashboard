@@ -36,3 +36,8 @@ THEN I am presented with the last searched city forecast
 That's it! You now have the weather for the exact moment you hit enter, as well as the whole day, along with a 5 day forecast. 
 
 View deployed version: https://keaton-brewster.github.io/Weather-Dashboard/
+
+Images:
+
+![Screen Shot 2021-01-23 at 4 56 02 PM](https://user-images.githubusercontent.com/65474893/105616370-ffed7c00-5d9b-11eb-8aa2-7428d689f83b.png)
+![Screen Shot 2021-01-23 at 4 56 25 PM](https://user-images.githubusercontent.com/65474893/105616366-f8c66e00-5d9b-11eb-8957-ac320f2d9f6d.png)
