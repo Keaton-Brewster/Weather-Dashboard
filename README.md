@@ -27,7 +27,7 @@ WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast
 ```
 
-## Using the application (don't worry, it's easy:)
+## Using the application (don't worry, it's easy):
 
 * Type in the name of the city for which you want to check the weather.    
 * Press enter.   
