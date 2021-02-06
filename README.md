@@ -1,5 +1,7 @@
-# Weather-Dashboard
-Simple weather dashboard - Search for a city, and check the weather conditions and forecast
+# Weather-Dashboard  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
+Simple weather dashboard - Search for a city, and check the weather conditions and forecast  
+
 
 ## User Story
 
@@ -41,3 +43,10 @@ Images:
 
 ![Screen Shot 2021-01-23 at 4 56 02 PM](https://user-images.githubusercontent.com/65474893/105616370-ffed7c00-5d9b-11eb-8aa2-7428d689f83b.png)
 ![Screen Shot 2021-01-23 at 4 56 25 PM](https://user-images.githubusercontent.com/65474893/105616366-f8c66e00-5d9b-11eb-8957-ac320f2d9f6d.png)
+
+## Technology: 
+DAY.js  
+jQuery  
+Open Weather API  
+Bootstrap  
+Fontawesome  
